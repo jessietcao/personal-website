@@ -1,0 +1,59 @@
+body {
+    display: grid;
+    place-items: center;
+    height: 100vh; /* Ensures the content is centered vertically */
+    margin: 0;
+    background-color: rgb(0, 0, 0);
+    color:azure;
+  }
+  
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Additional styles for the container if needed */
+  }
+
+  spline-viewer {
+    position: absolute;
+    transform: translateY(-80px);
+    height: 100vh;
+    position: relative; 
+    top: 0;
+    left: 0;
+    z-index: 0; 
+  }
+
+  .inner {
+    z-index: 1;
+    display: flex;
+    transform: translateY(-300px);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .btn {
+    text-decoration: none;
+    display: inline-block;
+    
+    font-size: 1.5rem;
+    padding: 1rem 2.8rem;
+    background: white;
+    border-radius: 4rem;
+    box-shadow: 0 0 1rem white;
+    font-size: 1.6 rem;
+    color: black;
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+    transition: 0.5s ease;
+  }
+  
+  .btn:hover {
+    box-shadow: none;
+  }
+  
+  
