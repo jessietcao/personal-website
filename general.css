@@ -48,7 +48,7 @@ section {
 
 span {
   background-size: 1500px;
-  background-image: url('/images/bg2.jpg'); /* Use your carved image */
+  background-image: url('images/bg2.jpg'); /* Use your carved image */
   background-position: 60%;
   color: transparent; /* Hide the text color */
   -webkit-background-clip: text; /* Clip the background to the text */
@@ -68,7 +68,7 @@ span {
   align-items: center;
   z-index: 2;
   justify-content: space-between;
-  background-image: url('/images/bg2.jpg');
+  background-image: url('images/bg2.jpg');
   background-size: 100%;
 }
 
@@ -208,7 +208,7 @@ spline-viewer {
 
   font-family: "Lobster", sans-serif;
   background-size: 1000px;
-  background-image: url('/images/bg2.jpg'); /* Use your carved image */
+  background-image: url('images/bg2.jpg'); /* Use your carved image */
   background-position: 60%;
   color: transparent; /* Hide the text color */
   -webkit-background-clip: text; /* Clip the background to the text */
