@@ -37,31 +37,6 @@ body {
 
   }
 
-  .btn {
-
-    position: absolute;
-    top: 80vh;
-
-    width: 35vh;
-
-    text-decoration: none;
-    /* display: inline-block; */
-    font-family: "Cabin Sketch", serif;
-    font-size: 2rem;
-    padding: 1rem 2.8rem;
-    background: white;
-    border-radius: 4rem;
-    box-shadow: 0 0 1rem rgb(0, 0, 0);
-    font-size: 1.6 rem;
-    color: black;
-    letter-spacing: 0.1rem;
-    font-weight: 600;
-    transition: 0.5s ease;
-  }
-  
-  .btn:hover {
-    box-shadow: none;
-  }
 
 
 
@@ -115,5 +90,32 @@ body {
   
   }
 }
+
+.btn {
+
+  position: absolute;
+  top: 75vh;
+
+  width: 35vh;
+
+  text-decoration: none;
+  /* display: inline-block; */
+  font-family: "Cabin Sketch", serif;
+  font-size: 2rem;
+  padding: 1rem 2.8rem;
+  background: white;
+  border-radius: 4rem;
+  box-shadow: 0 0 1rem rgb(0, 0, 0);
+  font-size: 1.6 rem;
+  color: black;
+  letter-spacing: 0.1rem;
+  font-weight: 600;
+  transition: 0.5s ease;
+}
+
+.btn:hover {
+  box-shadow: none;
+}
+
 
   
