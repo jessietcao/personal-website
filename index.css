@@ -3,7 +3,7 @@ body {
     place-items: center;
     height: 100vh; /* Ensures the content is centered vertically */
     margin: 0;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
     color:azure;
   }
   
@@ -27,6 +27,7 @@ body {
   }
 
   .inner {
+    top: 75vh;
     z-index: 1;
     display: flex;
     transform: translateY(-300px);
@@ -37,14 +38,20 @@ body {
   }
 
   .btn {
+
+    position: absolute;
+    top: 75vh;
+
+    width: 35vh;
+
     text-decoration: none;
-    display: inline-block;
-    
-    font-size: 1.5rem;
+    /* display: inline-block; */
+    font-family: "Cabin Sketch", serif;
+    font-size: 2rem;
     padding: 1rem 2.8rem;
     background: white;
     border-radius: 4rem;
-    box-shadow: 0 0 1rem white;
+    box-shadow: 0 0 1rem rgb(0, 0, 0);
     font-size: 1.6 rem;
     color: black;
     letter-spacing: 0.1rem;
@@ -55,5 +62,58 @@ body {
   .btn:hover {
     box-shadow: none;
   }
+
+
+
+
+
+
+   .image-default,
+.image-hover {
+  position: absolute;
+  top: 0;
+  left: 25%;
+  width: 50%;
+  transition: opacity 0.8s ease;
+}
+
+.image-hover {
+  opacity: 0; /* Hidden by default */
+}
+
+.image-container:hover .image-hover {
+  opacity: 1; /* Show hover image */
+}
+
+.image-container:hover .image-default {
+  opacity: 0; /* Hide default image */
+}
+
+.btn:hover .image-hover {
+  opacity: 1;
+}
+
+.btn:hover .image-default {
+  opacity: 0;
+}
+
+
+.flower {
+  position: absolute;
+  pointer-events: none;
+  animation: fall 5s linear ;
+ 
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+
+  }
+  100% {
+    transform: translateY(200vh) rotate(360deg);
   
+  }
+}
+
   

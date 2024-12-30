@@ -1,108 +1,46 @@
-const sectionEnters = document.querySelectorAll(".sectionslide");
-const sectionOptions = {
-  threshold: 0.2,
-  rootMargin: "0px 0px -250px 0px",
-};
+const container = document.querySelector('.image-container');
 
-const sectionOnScroll = new IntersectionObserver(function (
-  entries,
-  sectionOnScroll
-) {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) {
-      return;
-    } else {
-      entry.target.classList.add("visible");
-      sectionOnScroll.unobserve(entry.target);
-    }
-  });
-},
-sectionOptions);
-
-sectionEnters.forEach((sectionEnter) => {
-  sectionOnScroll.observe(sectionEnter);
+container.addEventListener('mouseenter', () => {
+  for (let i = 0; i < 20; i++) {
+    createFlower();
+  }
 });
 
-
-/*sliding and fading for small elements*/
-const faders = document.querySelectorAll(".fade");
-const sliders = document.querySelectorAll(".slide");
-
-const appearOptions = {
-  threshold: 0.15,
-  rootMargin: "0px 0px -250px 0px",
-};
-
-const appearOnScroll = new IntersectionObserver(function (
-  entries,
-  appearOnScroll
-) {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) {
-      return;
-    } else {
-      entry.target.classList.add("visible");
-      appearOnScroll.unobserve(entry.target);
-    }
-  });
-},
-appearOptions);
-
-const disappearOptions = {
-  threshold: 0.75,
-  rootMargin: "0px 0px -250px 0px",
-};
-
-faders.forEach((fader) => {
-  appearOnScroll.observe(fader);
+container.addEventListener('mouseleave', () => {
+  // Remove all flower elements when the mouse leaves the container
+  const flowers = document.querySelectorAll('.flower');
+  flowers.forEach(flower => flower.remove());
 });
 
+function createFlower() {
+  const flower = document.createElement('img');
 
-sliders.forEach((slider) => {
-  appearOnScroll.observe(slider);
-});
+  const randint = Math.random();
 
+  if (randint < 0.2) {
+    flower.src = 'images/leaf.png';
+  } else if (randint < 0.6) {
+    flower.src = 'images/flower.png';
+  } else {
+    flower.src = 'images/flower2.png';
+  }
 
+  flower.classList.add('flower');
 
-/* menu icons on smaller screens */
-let menuIcon = document.querySelector('#menu-icon');
-let navbar = document.querySelector('.navbar');
+  // Randomize initial position
+  flower.style.left = Math.random() * window.innerWidth + 'px';
+  flower.style.top = Math.random() * -500 + 'px'; // Start above the viewport
 
-menuIcon.onclick = () => {
-  menuIcon.classList.toggle('bx-x');
-  navbar.classList.toggle('active');
-};
+  // Randomize size
+  const size = Math.random() * 70 + 20; 
+  flower.style.width = size + 'px';
+  flower.style.height = size + 'px';
 
+  // Add the flower to the container
+  document.body.appendChild(flower);
 
-
-/* highlighting on differnt nav sections*/
-let sections = document.querySelectorAll('section');
-let navLinks = document.querySelectorAll('header nav a');
-
-window.onscroll = () => {
-  sections.forEach(sec => {
-    let top = window.scrollY;
-    let offset = sec.offsetTop - 150;
-    let height = sec.offsetHeight;
-    let id = sec.getAttribute('id');
-
-    if(top >= offset && top < offset + height) {
-      navLinks.forEach(links => {
-        links.classList.remove('active');
-        document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
-      })
-    }
+  // Remove the flower after animation ends
+  flower.addEventListener('animationend', () => {
+    flower.remove();
   });
-  
-  let header = document.querySelector('header');
-  header.classList.toggle('sticky', window.scrollY > 100);
-
-
-  menuIcon.classList.remove('bx-x');
-  navbar.classList.remove('active'); 
-
-};
-
-
-
-
+}
