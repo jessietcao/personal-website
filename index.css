@@ -17,10 +17,8 @@ body {
   }
 
   .inner {
-    top: 75vh;
     z-index: 1;
     display: flex;
-    transform: translateY(-300px);
     flex-direction: column;
     justify-content: center;
     align-items: center;
