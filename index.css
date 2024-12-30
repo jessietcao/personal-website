@@ -16,16 +16,6 @@ body {
     /* Additional styles for the container if needed */
   }
 
-  spline-viewer {
-    position: absolute;
-    transform: translateY(-80px);
-    height: 100vh;
-    position: relative; 
-    top: 0;
-    left: 0;
-    z-index: 0; 
-  }
-
   .inner {
     top: 75vh;
     z-index: 1;
@@ -93,8 +83,8 @@ body {
 
 .btn {
 
-  position: absolute;
-  top: 75vh;
+  position: relative;
+  top: 80vh;
 
   width: 35vh;
 
