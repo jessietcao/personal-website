@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const centerY = rect.top + rect.height / 2;
 
   const distanceA = 300; // Distance from the moon (ellipse major axis)
-  const distanceB = 150; // Distance from the moon (ellipse minor axis)
+  const distanceB = 100; // Distance from the moon (ellipse minor axis)
 
   stars.forEach((star, index) => {
     const angle = (index / stars.length) * 360; // Evenly space stars
