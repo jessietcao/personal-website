@@ -1,46 +1,77 @@
-const container = document.querySelector('.image-container');
+document.addEventListener("DOMContentLoaded", () => {
+  const stars = document.querySelectorAll(".star");
+  const moonElement = document.querySelector('.moon');
 
-container.addEventListener('mouseenter', () => {
-  for (let i = 0; i < 20; i++) {
-    createFlower();
-  }
-});
+  const rect = moonElement.getBoundingClientRect();
+  const centerX = rect.left + rect.width / 2;
+  const centerY = rect.top + rect.height / 2;
 
-container.addEventListener('mouseleave', () => {
-  // Remove all flower elements when the mouse leaves the container
-  const flowers = document.querySelectorAll('.flower');
-  flowers.forEach(flower => flower.remove());
-});
+  const distanceA = 300; // Distance from the moon (ellipse major axis)
+  const distanceB = 150; // Distance from the moon (ellipse minor axis)
 
-function createFlower() {
-  const flower = document.createElement('img');
+  stars.forEach((star, index) => {
+    const angle = (index / stars.length) * 360; // Evenly space stars
+    const duration = 2 + Math.random(); // Random shooting duration
 
-  const randint = Math.random();
+    // Set initial position at the center
+    star.style.left = `${centerX}px`;
+    star.style.top = `${centerY}px`;
 
-  if (randint < 0.2) {
-    flower.src = 'images/leaf.png';
-  } else if (randint < 0.6) {
-    flower.src = 'images/flower.png';
-  } else {
-    flower.src = 'images/flower2.png';
-  }
+    // Create shooting effect
+    setTimeout(() => {
+      const targetX = centerX + distanceA * Math.cos((angle * Math.PI) / 180);
+      const targetY = centerY + distanceB * Math.sin((angle * Math.PI) / 180);
 
-  flower.classList.add('flower');
+      star.style.transition = `transform ${duration}s ease-out, opacity 0.5s`;
+      star.style.transform = `translate(${targetX - centerX}px, ${targetY - centerY}px)`;
+      star.style.opacity = 1;
 
-  // Randomize initial position
-  flower.style.left = Math.random() * window.innerWidth + 'px';
-  flower.style.top = Math.random() * -500 + 'px'; // Start above the viewport
-
-  // Randomize size
-  const size = Math.random() * 70 + 20; 
-  flower.style.width = size + 'px';
-  flower.style.height = size + 'px';
-
-  // Add the flower to the container
-  document.body.appendChild(flower);
-
-  // Remove the flower after animation ends
-  flower.addEventListener('animationend', () => {
-    flower.remove();
+      // After shooting, start revolving
+      setTimeout(() => {
+        star.style.transition = `none`; // Stop transition for spinning
+        spinStar(star, angle, distanceA, distanceB);
+      }, duration * 1000);
+    }, index * 200); // Delay between stars shooting
   });
+
+  // Add cursor movement effect
+  document.addEventListener('mousemove', (event) => {
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
+    const shiftAmount = 90; // Maximum shift amount for the stars
+
+    stars.forEach((star) => {
+      if (star.classList.contains("rotating")) { // Only apply to rotating stars
+        const shiftX = ((mouseX - window.innerWidth / 2) / window.innerWidth) * shiftAmount;
+        const shiftY = ((mouseY - window.innerHeight / 2) / window.innerHeight) * shiftAmount;
+        star.setAttribute("data-shift-x", shiftX); // Store horizontal shift
+        star.setAttribute("data-shift-y", shiftY); // Store vertical shift
+      }
+    });
+  });
+});
+
+// Function to make stars revolve around the moon
+function spinStar(star, initialAngle, distanceA, distanceB) {
+  let angle = initialAngle;
+
+  // Mark star as rotating
+  star.classList.add("rotating");
+
+  function rotate() {
+    angle += 0.5; // Adjust speed
+    const centerX = window.innerWidth / 2; // Center of the screen X
+    const centerY = window.innerHeight / 2; // Center of the screen Y
+
+    // Add cursor shift effect
+    const shiftX = parseFloat(star.getAttribute("data-shift-x")) || 0;
+    const shiftY = parseFloat(star.getAttribute("data-shift-y")) || 0;
+
+    const x = centerX + shiftX + distanceA * Math.cos((angle * Math.PI) / 180);
+    const y = centerY + shiftY + distanceB * Math.sin((angle * Math.PI) / 180);
+    star.style.transform = `translate(${x - centerX}px, ${y - centerY}px)`;
+    requestAnimationFrame(rotate);
+  }
+
+  rotate();
 }
