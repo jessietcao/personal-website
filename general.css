@@ -336,6 +336,12 @@ spline-viewer {
   margin: 2rem 0 3rem;
 }
 
+.about-content li {
+  font-size: 1.6rem;
+  text-align: 1.6rem;
+  margin: 2rem 0 3rem;
+}
+
 /* time line */
 .portfolio {
   color:var(--second-text-color);
