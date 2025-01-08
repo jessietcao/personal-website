@@ -255,6 +255,10 @@ spline-viewer {
   font-size: 1.6rem;
 }
 
+.home-content li {
+  font-size: 1.6rem;
+}
+
 .contacts a {
   display: inline-flex;
   justify-content: center;
